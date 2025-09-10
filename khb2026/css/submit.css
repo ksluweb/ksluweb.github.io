@@ -4,11 +4,10 @@
 :root {
     --grey: #333;
     --white: #fff;
-    --yellow: #fffc2e;
-    --deepyellow: #ffec00;
-    --pastelyellow: #fff78e;
+    --green: #2eff2e;
+    --deepgreen: #00cd00;
+    --pastelgreen: #8eff8e;
 }
-
 /*GENERAL STYLING================================================ */
 *{
     font-family: 'Noto Sans JP', sans-serif;
@@ -33,7 +32,7 @@ h2 {
 }
 /*HEADER================================================ */
 .header {
-        background-image: linear-gradient(var(--pastelyellow), var(--white));
+        background-image: linear-gradient(var(--pastelgreen), var(--white));
         padding: 0.2rem 0;
 }
 
@@ -66,15 +65,15 @@ h2 {
     margin-top: 0.5rem;
 }
 .submit:hover {
-    background: var(--deepyellow);
+    background: var(--deepgreen);
     color: #000000;
 }
 
 .haiku:focus-visible {
-    background-color: var(--pastelyellow);
+    background-color: var(--pastelgreen);
 }
 .name:focus-visible {
-    background-color: var(--pastelyellow);
+    background-color: var(--pastelgreen);
 }
 
 
@@ -107,5 +106,6 @@ h2 {
             margin-top: 0.5rem;
         }
         
+
 
     }
