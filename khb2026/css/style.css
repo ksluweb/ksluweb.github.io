@@ -7,9 +7,9 @@
 :root {
     --grey: #333;
     --white: #fff;
-    --yellow: #fffc2e;
-    --deepyellow: #ffcd00;
-    --pastelyellow: #fff78e;
+    --green: #2eff2e;
+    --deepgreen: #00cd00;
+    --pastelgreen: #8eff8e;
 }
 
 /*GENERAL STYLING================================================ */
@@ -125,9 +125,9 @@ header .logo{
 }
 @keyframes bg-color {
      0% { background-color: var(--grey); }
-    40% { background-color: var(--pastelyellow); }
-    80% { background-color: var(--deepyellow); }
-   100% { background-color: var(--pastelyellow); }
+    40% { background-color: var(--pastelgreen); }
+    80% { background-color: var(--deepgreen); }
+   100% { background-color: var(--pastelgreen); }
 }
 #top h1 {
     padding-top: 6rem;
@@ -188,7 +188,7 @@ header .logo{
 
 /*ABOUT================================================ */
 #about {
-    background-image: linear-gradient(var(--deepyellow), var(--pastelyellow));
+    background-image: linear-gradient(var(--deepgreen), var(--pastelgreen));
     padding: 7rem 3rem;
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
@@ -261,7 +261,7 @@ header .logo{
 
 /*NEWS================================================ */
 #news {
-    background-image: linear-gradient(var(--pastelyellow), var(--yellow));
+    background-image: linear-gradient(var(--pastelgreen), var(--green));
     padding: 7rem 0;
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
@@ -332,7 +332,7 @@ header .logo{
 .judge-table tr {
     border-radius: 10px; 
     border-bottom: 5px solid var(--white);
-    background-image: linear-gradient( to right, var(--pastelyellow), var(--white));
+    background-image: linear-gradient( to right, var(--pastelgreen), var(--white));
 }
 .judge-table td {
     display: block;
@@ -350,7 +350,7 @@ header .logo{
 
 /*expl================================================ */
 #expl {
-    background: linear-gradient(var(--pastelyellow), var(--deepyellow));
+    background: linear-gradient(var(--pastelgreen), var(--deepgreen));
     padding: 6rem 1rem 2rem;
     -webkit-clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
@@ -502,3 +502,4 @@ DESKTOP SIZE
         width: 75%;
     }
 }
+
