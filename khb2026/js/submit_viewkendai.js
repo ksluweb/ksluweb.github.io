@@ -1,4 +1,4 @@
-fetch('kendai.json')
+fetch('js/kendai.json')
   .then(response => response.json())
   .then(data => {
     document.getElementById('kendai1').textContent = "リーグ戦①　兼題" + data.dai1[1] + "　" + data.dai1[2];
