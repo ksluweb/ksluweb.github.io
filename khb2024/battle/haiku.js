@@ -2,11 +2,18 @@ function sanitizeHTML(str) {
   const template = document.createElement("template");
   template.innerHTML = str;
   const allowedTags = ["RUBY","RB","RT","RP","BR","SPAN"];
-  const allowedAttrs = { "SPAN": ["class"] };
+  const allowedAttrs = {
+    SPAN: ["class"],
+  };
   template.content.querySelectorAll("*").forEach(el => {
     if (!allowedTags.includes(el.tagName)) {
       el.replaceWith(document.createTextNode(el.outerHTML));
-      return;
+    } else {
+      el.getAttributeNames().forEach(attr => {
+        if (!(allowedAttrs[el.tagName] && allowedAttrs[el.tagName].includes(attr))) {
+          el.removeAttribute(attr);
+        }
+      });
     }
     Array.from(el.attributes).forEach(attr => {
       const tagAllowed = allowedAttrs[el.tagName] || [];
