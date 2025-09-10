@@ -1,4 +1,4 @@
-fetch('kendai.json')
+fetch('js/kendai.json')
   .then(response => response.json())
   .then(data => {
     document.getElementById('kendai1').textContent = data.dai1[1] + "　" + data.dai1[2];
