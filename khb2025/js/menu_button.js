@@ -3,17 +3,17 @@ const nav = document.querySelector('.main-nav');
 
 btn.addEventListener('click', () => {
   nav.classList.toggle('open-menu');
-  if (btn.innerHTML === 'Menu') {
-    btn.innerHTML = 'Close';
+  if (btn.textContent === 'Menu') {
+    btn.textContent = 'Close';
   } else {
-    btn.innerHTML = 'Menu';
+    btn.textContent = 'Menu';
   }
 });
 nav.addEventListener('click', () => {
   nav.classList.remove('open-menu');
-  if (btn.innerHTML === 'Menu') {
-    btn.innerHTML = 'Close';
+  if (btn.textContent === 'Menu') {
+    btn.textContent = 'Close';
   } else {
-    btn.innerHTML = 'Menu';
+    btn.textContent = 'Menu';
   }
 });

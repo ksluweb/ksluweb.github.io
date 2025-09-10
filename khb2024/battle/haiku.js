@@ -1,3 +1,15 @@
+function sanitizeHTML(str) {
+  const template = document.createElement("template");
+  template.innerHTML = str;
+  const allowedTags = ["RUBY","RB","RT","RP","BR","SPAN"];
+  template.content.querySelectorAll("*").forEach(el => {
+    if (!allowedTags.includes(el.tagName)) {
+      el.replaceWith(document.createTextNode(el.outerHTML));
+    }
+  });
+  return template.innerHTML;
+}
+
 const nadaA = [
     ["灘高等学校Ａ"],
     ["", "犇ける獣の星座いわつらら", "", "ヨットの帆しまはれてをり草つらら", "", "二重窓　氷柱の中に虫のゐず"],
