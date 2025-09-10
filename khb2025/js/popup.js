@@ -2,7 +2,7 @@ function openPopup(url) {
   const allowedDomains = [window.location.hostname, 'forms.gle'];
   let parsed;
   try {
-    parsed = new URL(url, window.location.origin);
+    parsed = new URL(url, window.location.href);
   } catch (e) {
     console.warn('Invalid URL:', url);
     return;
