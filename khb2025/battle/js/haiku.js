@@ -81,6 +81,12 @@ function sanitizeHTML(str) {
         }
       });
     }
+    Array.from(el.attributes).forEach(attr => {
+      const tagAllowed = allowedAttrs[el.tagName] || [];
+      if (!tagAllowed.includes(attr.name.toLowerCase())) {
+        el.removeAttribute(attr.name);
+      }
+    });
   });
   return template.innerHTML;
 }
