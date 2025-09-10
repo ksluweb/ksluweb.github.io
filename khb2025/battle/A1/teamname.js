@@ -1,8 +1,8 @@
 const redteam = document.getElementById('redteam');
-redteam.innerHTML =  teamname1[0][0];
+redteam.textContent =  teamname1[0][0];
 const whiteteam = document.getElementById('whiteteam');
-whiteteam.innerHTML = teamname2[0][0];
+whiteteam.textContent = teamname2[0][0];
 const kendai = document.getElementById('kendai');
-kendai.innerHTML = dai1[1];
+kendai.textContent = dai1[1];
 const gameid = document.getElementById('gameid');
-gameid.innerHTML = "Ａブロック　第１試合";
+gameid.textContent = "Ａブロック　第１試合";

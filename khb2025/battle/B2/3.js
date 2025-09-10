@@ -4,7 +4,7 @@ let whiteShown = false;
 function showRed() {
   if (!redShown) {
     redShown = true;
-    left.innerHTML = teamname5[2][3];//[1]が兼題１、[3]が中堅句を意味する
+    left.innerHTML = sanitizeHTML(teamname5[2][3]);//[1]が兼題１、[3]が中堅句を意味する
     btnA.style.display = "none";
   }
 }
@@ -12,7 +12,7 @@ function showRed() {
 function showWhite() {
   if (!whiteShown) {
     whiteShown = true;
-    right.innerHTML = teamname6[2][3];
+    right.innerHTML = sanitizeHTML(teamname6[2][3]);
     btnB.style.display = "none";
   }
 }
@@ -20,4 +20,4 @@ btnA.addEventListener('click', showRed);
 btnB.addEventListener('click', showWhite);
 
 const matchid = document.getElementById('matchid');
-matchid.innerHTML = "中堅戦";
+matchid.textContent = "中堅戦";
