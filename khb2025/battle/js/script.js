@@ -3,18 +3,18 @@ const nav = document.querySelector('.main-nav');
 
 btn.addEventListener('click', () => {
   nav.classList.toggle('open-menu');
-  if (btn.textContent === '⚙') {
-    btn.textContent = '×';
+  if (btn.innerHTML === '⚙') {
+    btn.innerHTML = '×';
   } else {
-    btn.textContent = '⚙';
+    btn.innerHTML = '⚙';
   }
 });
 nav.addEventListener('click', () => {
   nav.classList.remove('open-menu');
-  if (btn.textContent === '⚙') {
-    btn.textContent = '×';
+  if (btn.innerHTML === '⚙') {
+    btn.innerHTML = '×';
   } else {
-    btn.textContent = '⚙';
+    btn.innerHTML = '⚙';
   }
 });
 

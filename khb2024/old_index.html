@@ -133,26 +133,12 @@
                     <p>
                        兼題発表：2023年12月1日（金）<br>
                        投句締切：2023年12月24日（日）<br>
-                        <a href="javascript:void(0)" onclick="openPopup('submit.html')">投句フォーム</a>
-                        <script>
-                        function openPopup(url) {
-                          const allowedDomains = [window.location.hostname, 'forms.gle'];
-                          let parsed;
-                          try {
-                            parsed = new URL(url, window.location.origin);
-                          } catch (e) {
-                            console.warn('Invalid URL:', url);
-                            return;
-                          }
-
-                          if (!allowedDomains.includes(parsed.hostname)) {
-                            console.warn('Blocked untrusted URL:', url);
-                            return;
-                          }
-
-                          window.open(parsed.href, '_blank', 'width=900,height=1200,noopener');
-                        }
-                        </script>
+			<a href="javascript:void(0)" onclick="openPopup('submit.html')">投句フォーム</a>
+			<script>
+			function openPopup(url) {
+ 			 window.open(url, '_blank', 'width=900, height=1200');
+			}
+			</script>
                    </p>
                     </p>
                 </div>
@@ -180,7 +166,7 @@
 	 </div>
             
             <div class="footer wrapper">
-                <a href="../index.html">関西学生文芸連合TOP</a>  /  <small>&copy; 2023 関西学生文芸連合  /  Last Managed: 2023/12/18</small>
+		<a href="../index.html">関西学生文芸連合TOP</a>  /  <small>&copy; 2023 関西学生文芸連合  /  Last Managed: 2023/12/18</small>
             </div>
         </section>
 
