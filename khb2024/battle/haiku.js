@@ -1,3 +1,30 @@
+function sanitizeHTML(str) {
+  const template = document.createElement("template");
+  template.innerHTML = str;
+  const allowedTags = ["RUBY","RB","RT","RP","BR","SPAN"];
+  const allowedAttrs = {
+    SPAN: ["class"],
+  };
+  template.content.querySelectorAll("*").forEach(el => {
+    if (!allowedTags.includes(el.tagName)) {
+      el.replaceWith(document.createTextNode(el.outerHTML));
+    } else {
+      el.getAttributeNames().forEach(attr => {
+        if (!(allowedAttrs[el.tagName] && allowedAttrs[el.tagName].includes(attr))) {
+          el.removeAttribute(attr);
+        }
+      });
+    }
+    Array.from(el.attributes).forEach(attr => {
+      const tagAllowed = allowedAttrs[el.tagName] || [];
+      if (!tagAllowed.includes(attr.name.toLowerCase())) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+  return template.innerHTML;
+}
+
 const nadaA = [
     ["灘高等学校Ａ"],
     ["", "犇ける獣の星座いわつらら", "", "ヨットの帆しまはれてをり草つらら", "", "二重窓　氷柱の中に虫のゐず"],

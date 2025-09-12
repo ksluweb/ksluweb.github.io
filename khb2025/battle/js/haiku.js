@@ -64,6 +64,33 @@ HTMLタグを使用するときの注意．
 なお，このtcyクラスについては，battle.cssで定義してあるものであり，一般に使用できるものではないことにも注意せよ．もし追加情報が必要であれば，「縦中横　css」などで調べるとよい．（補足：spanタグはHTMLのタグである．こちらについての追加情報が必要な場合は，「spanタグ　HTML」などと検索すればよい．）
 */
 
+function sanitizeHTML(str) {
+  const template = document.createElement("template");
+  template.innerHTML = str;
+  const allowedTags = ["RUBY","RB","RT","RP","BR","SPAN"];
+  const allowedAttrs = {
+    SPAN: ["class"],
+  };
+  template.content.querySelectorAll("*").forEach(el => {
+    if (!allowedTags.includes(el.tagName)) {
+      el.replaceWith(document.createTextNode(el.outerHTML));
+    } else {
+      el.getAttributeNames().forEach(attr => {
+        if (!(allowedAttrs[el.tagName] && allowedAttrs[el.tagName].includes(attr))) {
+          el.removeAttribute(attr);
+        }
+      });
+    }
+    Array.from(el.attributes).forEach(attr => {
+      const tagAllowed = allowedAttrs[el.tagName] || [];
+      if (!tagAllowed.includes(attr.name.toLowerCase())) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+  return template.innerHTML;
+}
+
 const osakaToin = [
     ["大阪桐蔭中学校"],
     ["", "着地点落ち葉だまりや滑り台", "", "湖を行く高速道路落葉かな", "", "キャスターの硬き椅子より見る落葉"],

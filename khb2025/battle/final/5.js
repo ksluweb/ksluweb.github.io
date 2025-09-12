@@ -4,7 +4,7 @@ let whiteShown = false;
 function showRed() {
   if (!redShown) {
     redShown = true;
-    left.innerHTML = teamnamefin1[4][5];//[1]が兼題１、[1]が先鋒句を意味する
+    left.textContent = teamnamefin1[4][5];//[1]が兼題１、[1]が先鋒句を意味する
     btnA.style.display = "none";
   }
 }
@@ -12,7 +12,7 @@ function showRed() {
 function showWhite() {
   if (!whiteShown) {
     whiteShown = true;
-    right.innerHTML = teamnamefin2[4][5];
+    right.textContent = teamnamefin2[4][5];
     btnB.style.display = "none";
   }
 }
@@ -20,4 +20,4 @@ btnA.addEventListener('click', showRed);
 btnB.addEventListener('click', showWhite);
 
 const matchid = document.getElementById('matchid');
-matchid.innerHTML = "大将戦";
+matchid.textContent = "大将戦";
