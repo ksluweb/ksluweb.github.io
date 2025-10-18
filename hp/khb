@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>関西学生文芸連合</title>
+  <link rel="icon" href="../img/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+<header>
+  <div class="header">
+      <div class="list">
+        <div class="topline">
+          <a href="https://twitter.com/bungeirengo_"><img src="../img/logo-white.png" height=30px></a>　
+          <a href="https://www.instagram.com/kansaigakuseibungeirengou"><img src="../img/Instagram_Glyph_White.png" height=30px></a>　
+          <a href="https://www.youtube.com/@kanbunren"><img src="../img/yt_icon_mono_dark.png" height=30px></a>
+        </div>
+      </div>
+      <div class="table">     
+        <dl>
+          <div class="image">
+            <dt><div class="small">Kansai Student Literary Union</div></dt>
+            <dt><div class="big">関西学生文芸連合</div></dt>
+          </div>
+        </dl>
+      <dl>
+        <div class="image">
+        <img src="../img/digital_logo.png" height=80px>
+        </div>
+      </dl>
+    </div>
+  </div>
+</header>
+<div class="topper"><a href="../index.html">関西学生文芸連合TOP</a>　　》　　About Us</div>
+<main>
+  <div>
+    <h1>関西俳句バトル</h1>
+    <p>
+    「関西俳句バトル」は、俳句甲子園形式に則り、中高生によるチームが、俳句を創作し、またお互いの句に対して議論を行うことを通して、その句作力および鑑賞力を競う大会です。
+    「俳句甲子園」には、毎年多くの高校が参加しており、俳句文化の浸透、そして句作・鑑賞両面の技術向上に大きな役割を果たしています。また、各地で俳句甲子園各支部が主催し、練習会や勉強会が開催されています。
+    俳句甲子園の形式それ自体は非常に優れたものでありながら、その形式を生かす機会はあまりありません。
+    また、荒川区と開成学園が共催している「中高生俳句バトルinあらかわ」などの、俳句甲子園形式を用いた大会を見れば、「俳句甲子園」においてよりも自由闊達に鑑賞していることが窺えます。
+    そこで、関西地区においてそのような機会が少ないことに鑑み、学生団体である関西学生文芸連合が主体となって、「関西俳句バトル」を学生間における俳句活動の活性化に寄与し、
+    「俳句甲子園」の優れた形式を生かしつつ、関西圏の学校の俳句力をより高める一助となることを期し、2024年から本大会を開催しています
+    </p>
+    <p>
+      過去の大会の記録はこちらからご覧いただけます。<br>
+      <a href="../khb2024/index.html">関西俳句バトル2024</a><br>
+      <a href="../khb2025/index.html">関西俳句バトル2025</a>
+    </p>
+  </div>
+  <div class="footer">
+		<a href="../index.html">関西学生文芸連合TOP</a>  /  <a href="member.html">For Member</a> <br>
+    お問い合わせ：<a href="mailto:kansai.bungei@gmail.com">kansai.bungei@gmail.com</a><br>
+    <small>&copy; 2023-2025 関西学生文芸連合  /  Last Managed: 2025/10/18 23:50 KT</small>
+  </div>
+</body>
+</html>
