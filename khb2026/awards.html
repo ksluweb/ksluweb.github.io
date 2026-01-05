@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Iframe Design Template</title>
+    <style>
+        /* =========================================
+           Basic Battle Styles (from battle.css)
+           ========================================= */
+        :root {
+            --primary: #e0e0e0;
+            --primary-light: #f5f5f5;
+            --team-slot-width: 40%;
+        }
+        body {
+            margin: 0;
+            color: #000;
+            background: #fff;
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Layout scaffolding for Poem Panels */
+        .battle-root {
+            width: 100%;
+            height: 80vh;
+        }
+        .battle-layout {
+            display: flex; /* fallback layout */
+            width: 100%;
+            height: 100%;
+        }
+        .poem-panel {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 30%;
+            box-sizing: border-box;
+            border: 2px solid #000;
+            background: #fff;
+            overflow: hidden;
+        }
+        .poem-panel--red { background: #ffccff; }
+        .poem-panel--white { background: #ffffff; }
+        .haiku-container {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            min-height: 0;
+            padding: 12px;
+            gap: 10px;
+        }
+        .haiku-text {
+            font-weight: 700;
+            font-size: 2.3em;
+            writing-mode: vertical-rl;
+            display: inline-block;
+            text-align: start;
+            padding-inline: .15em;
+            box-sizing: content-box;
+            overflow: visible;
+        }
+        .haiku-credits {
+            writing-mode: vertical-rl;
+            font-size: 0.9rem;
+            color: #000;
+            align-self: flex-end;
+            font-weight: 600;
+        }
+        .haiku-credit-line {
+            display: inline-block;
+            letter-spacing: 0.1em;
+        }
+        .haiku-label-judge {
+            writing-mode: vertical-rl;
+            font-size: 1.05rem;
+            color: #000;
+            font-weight: 700;
+            align-self: flex-start;
+            letter-spacing: 0.15em;
+        }
+
+        /* =========================================
+           Admin View Layout (from home.embed.css)
+           ========================================= */
+
+        :root {
+            --home-iframe-bg: linear-gradient(to bottom, #b4dfe2 0%, #a4dcb3 100%);
+            --top-bar-height: 120px;
+            --side-panel-width: 120px;
+            --side-margin: 20px;
+            --card-radius: 8px;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe8f0 0%, #cdf7f5 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .battle-root {
+            width: 100%;
+            height: 80vh;
+            margin: 0;
+            padding: 40px 40px 20px;
+            position: relative;
+            animation: none !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .battle-layout {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 16px;
+            width: max-content;
+            min-height: calc(100% - 60px);
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            animation: none !important;
+        }
+
+        .poem-panel {
+            position: relative;
+            width: var(--side-panel-width);
+            min-width: var(--side-panel-width);
+            flex: 0 0 var(--side-panel-width);
+            background: #fff !important;
+            border: none !important;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 16px 8px;
+            gap: 8px;
+        }
+
+        .poem-panel--red {
+            background: #fff !important;
+            border-top: 6px solid #cf544c !important;
+        }
+
+        .poem-panel--white {
+            background: #fff !important;
+            border-top: 6px solid #666 !important;
+        }
+
+        .haiku-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 8px 0 0;
+            gap: 12px;
+        }
+
+        .haiku-text {
+            writing-mode: vertical-rl;
+            font-size: 1.85rem;
+            font-family: "Hiragino Serif", serif;
+            color: #000;
+            line-height: 1.5;
+        }
+
+        .haiku-credits {
+            font-size: 0.78rem;
+            color: #000;
+        }
+
+        .haiku-label-judge {
+            font-size: 1rem;
+            color: #000;
+        }
+
+        .admin-header-card {
+            position: static;
+            transform: none;
+            order: 2;
+            flex: 0 0 280px;
+            min-height: 110px;
+            height: 110px;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: none; /* localized shadow handled by global box-shadow rule if applied, but here specific */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 52;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            pointer-events: auto;
+        }
+
+        /* Top Half: Title */
+        .admin-title {
+            flex: 0 0 36px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2rem;
+        }
+
+        .admin-title span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 10px;
+        }
+
+        /* Bottom Half: Match Info */
+        .admin-match-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0;
+            gap: 6px;
+        }
+
+        .admin-row-1 {
+            display: flex;
+            gap: 8px;
+        }
+
+        .admin-row-1 span {
+            font-size: 1.0rem;
+            background: #f4f9fd;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .admin-row-2 span {
+            font-size: 0.9rem;
+            background: #f4f9fd;
+            padding: 4px 12px;
+            border-radius: 4px;
+            color: #000;
+            font-weight: normal;
+        }
+
+        /* Team Cards */
+        .admin-team-red,
+        .admin-team-white {
+            position: static;
+            top: auto;
+            width: auto;
+            flex: 1;
+            min-width: 0;
+            min-height: 110px;
+            height: 110px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            pointer-events: auto;
+            z-index: 51;
+        }
+
+        .admin-team-red {
+            order: 1;
+            background: #cf544c;
+            align-items: flex-start;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .admin-team-white {
+            order: 3;
+            background: #666;
+            align-items: flex-end;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Team Labels */
+        .team-label {
+            font-size: 1em;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+
+        /* Team Name Value */
+        .team-val {
+            font-size: 1.3rem;
+            font-weight: bold;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-team-red .team-val {
+            text-align: left;
+        }
+
+        .admin-team-white .team-val {
+            text-align: right;
+        }
+
+        /* Score Placeholder */
+        .score-placeholder {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 4px;
+            opacity: 0.9;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 
+      Structure mimicked from 1.html (Battle Page)
+      Only "admin" relevant parts are shown/active due to CSS.
+    -->
+    <section class="battle-root">
+        
+        <!-- Standard Battle Layout (contains Poem Panels) -->
+        <div class="battle-layout">
+            <div class="poem-panel poem-panel--white">
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">灘高等学校　物部 知達 さん</span>
+                    </div>
+                    <div class="haiku-text">仏出世前の象たち初比叡</div>
+                    <div class="haiku-label-judge">優秀句（岩田 奎 先生選）</div>
+                </div>
+            </div>
+
+            <div class="poem-panel poem-panel--red">
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">名古屋中学校・高等学校　冨田 輝 さん</span>
+                    </div>
+                    <div class="haiku-text">先生はピアノも弾けて水仙花</div>
+                    <div class="haiku-label-judge">優秀句（若林 哲哉 先生選）</div>
+                </div>                
+            </div>
+
+            <div class="poem-panel poem-panel--white">
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">名古屋中学校・高等学校　冨田 輝 さん</span>
+                    </div>
+                    <div class="haiku-text">学童のさいごのひとり虫の声</div>
+                    <div class="haiku-label-judge">優秀句（久留島 元 先生選）</div>
+                </div>                
+            </div>
+
+            <div class="poem-panel poem-panel--red">                
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">灘高等学校　物部 知達 さん</span>
+                    </div>
+                    <div class="haiku-text">温泉を運ぶトラック水仙花</div>
+                    <div class="haiku-label-judge">優秀句（塩見 恵介 先生選）</div>
+                </div>
+            </div>
+
+            <div class="poem-panel poem-panel--white"> 
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">洛南Ａ　葛城 健太郎 さん</span>
+                    </div>
+                    <div class="haiku-text">マラソンの曲がりに枯野見えてをり</div>
+                    <div class="haiku-label-judge">優秀句（森賀 まり 先生選）</div>
+                </div>
+            </div>
+
+            <div class="poem-panel poem-panel--red">              
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">洛南Ａ　葛城 健太郎 さん</span>
+                    </div>
+                    <div class="haiku-text">初比叡煤のごとくに雲一片</div>
+                    <div class="haiku-label-judge">優秀句（辻 恵美子 先生選）</div>
+                </div>
+            </div>
+
+            <div class="poem-panel poem-panel--white">              
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">京都共栄学園高等学校Ａ　金谷 苺香 さん</span>
+                    </div>
+                    <div class="haiku-text">バケットを一本抱いて枯野かな</div>
+                    <div class="haiku-label-judge">優秀句（堀田 季何 先生選）</div>
+                </div>
+            </div>
+            
+            <div class="poem-panel poem-panel--red">
+                <div class="haiku-container">
+                    <div class="haiku-credits">
+                        <span class="haiku-credit-line">名古屋中学校・高等学校　冨田 輝 さん</span>
+                    </div>
+                    <div class="haiku-text">巻物に雲のてざはり初比叡</div>
+                    <div class="haiku-label-judge">最優秀句</div>
+                </div>                
+            </div>
+        </div>
+        <!-- 
+           Admin View Specific Layout 
+           This is the main overlay seen in the Admin Iframe
+        -->
+        <!--<div id="admin-view-layout">
+            
+            <div class="admin-header-card">
+                <div class="admin-title">
+                    <span id="m-Compe-name">関西俳句バトル2026</span>
+                </div>
+                <div class="admin-match-info">
+                    <div class="admin-row-1">
+                        <span id="m-gameid">結果発表</span>
+                        <span id="m-matchid"></span>
+                    </div>
+                    <div class="admin-row-2">
+                        <span id="m-kendai"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="admin-team-red">
+                <span class="team-label">紅</span>
+                <span id="m-redTeam" class="team-val">紅組チーム</span>
+                <span class="score-placeholder">　</span>
+            </div>
+
+            <div class="admin-team-white">
+                <span class="team-label">白</span>
+                <span id="m-whiteTeam" class="team-val">白組チーム</span>
+                <span class="score-placeholder">　</span>
+            </div>
+
+        </div>
+    -->
+        
+    </section>
+
+</body>
+<script>
+// --- Vertical auto layout ---
+function applyVerticalLayout(element, containerHeight) {
+    if (!element) return;
+    element.classList.add('auto-vertical');
+
+    const availableHeight = containerHeight || getAvailableHeight(element);
+
+    const text = element.textContent.replace(/\r?\n/g, '').trim();
+
+    element.style.letterSpacing = '0px';
+    element.style.transform = 'none';
+
+    const charCount = Array.from(text).length;
+
+    const naturalHeight = element.getBoundingClientRect().height;
+
+    if (naturalHeight > availableHeight + 0.5) {
+        const scale = availableHeight / naturalHeight;
+        element.style.transform = `scaleY(${scale})`;
+    } else {
+        if (charCount > 1) {
+            const gaps = charCount - 1;
+            let spacing = (availableHeight - naturalHeight) / gaps;
+            element.style.letterSpacing = `${spacing}px`;
+            const adjustedHeight = element.getBoundingClientRect().height;
+            if (Math.abs(adjustedHeight - availableHeight) > 0.5 && adjustedHeight > 0) {
+                const adjust = availableHeight / adjustedHeight;
+                spacing = spacing * adjust;
+                element.style.letterSpacing = `${spacing}px`;
+            }
+        }
+    }
+}
+
+function getAvailableHeight(element) {
+    // red/white の俳句はそれぞれ .poem-panel--red / .poem-panel--white に入っている
+    const parent = element.closest('.poem-panel');
+    if (parent) {
+        const parentHeight = parent.clientHeight;
+        const h3 = parent.querySelector('h3');
+        const h3Height = h3 ? h3.offsetHeight : 0;
+        // battle.css では header 高さは wrapper の計算に含まれているので余白分だけ控えめに
+        return parentHeight - h3Height - 60; // マージン分
+    }
+    return 200;
+}
+
+function applyHaikuLayout() {
+    const haikuNodes = document.querySelectorAll('.battle-layout .haiku-text');
+    haikuNodes.forEach(el => {
+        if (el.textContent.trim()) {
+            const available = getAvailableHeight(el);
+            applyVerticalLayout(el, available);
+        }
+    });
+}
+
+let relayoutTimer = null;
+function queueHaikuRelayout() {
+    if (relayoutTimer) {
+        clearTimeout(relayoutTimer);
+    }
+    relayoutTimer = setTimeout(() => {
+        applyHaikuLayout();
+        relayoutTimer = null;
+    }, 80);
+}
+
+// ページ読み込み時と、リサイズ時にレイアウト調整
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(applyHaikuLayout, 150);
+});
+window.addEventListener('resize', () => queueHaikuRelayout());
+</script>
+</html>
